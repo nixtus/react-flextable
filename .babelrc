@@ -1,28 +1,11 @@
 {
   "presets": [
-    "es2015",
-    "react",
-    "stage-2"
+    "@babel/preset-env",
+    "@babel/preset-react"
   ],
-  "env": {
-    "development": {
-      "presets": [
-        "env"
-      ],
-      "plugins": [
-        "add-module-exports"
-      ]
-    },
-    "production": {
-      "presets": [
-        "env",
-        "minify"
-      ],
-      "plugins": [
-        "add-module-exports",
-        "transform-react-constant-elements",
-        "transform-react-remove-prop-types"
-      ]
-    }
-  }
+  "plugins": [
+    "add-module-exports",
+    "transform-react-constant-elements",
+    "transform-react-remove-prop-types"
+  ]
 }
