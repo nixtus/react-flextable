@@ -1,7 +1,7 @@
 {
   "name": "@nixtus/react-flextable",
-  "version": "0.0.3",
-  "description": "Boilerplate for npm modules with ES6 features and syntax",
+  "version": "0.0.4",
+  "description": "React based 'table' component that uses FlexBox for responsive design.  Also contains a 'Expand' FlexItem allowing users to put components in an expandable area",
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
@@ -30,7 +30,7 @@
     "flextable",
     "npm",
     "module",
-    "node",
+    "flexbox",
     "javascript"
   ],
   "author": "Andrew Ninneman <andy@nixtus.com>",
