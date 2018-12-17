@@ -1,6 +1,6 @@
 {
   "name": "@nixtus/react-flextable",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Boilerplate for npm modules with ES6 features and syntax",
   "main": "./lib/index.js",
   "scripts": {

@@ -8,23 +8,23 @@ const checkForExpandItem = flexItem => (Array.isArray(flexItem)
   : flexItem.type.defaultProps.flexname === 'FlexItemExpand');
 
 export const FlexTable = props => (
-  <div {...props} flex-role="flex-table" className={`flex-table ${props.className}`} style={props.style}>
+  <div {...props} className={`flex-table ${props.className}`} style={props.style}>
     {props.children}
   </div>
 );
 
-export const FlexItem = props => <div {...props} flex-role="flex-item" className={`flex-item ${props.className}`} style={props.style}>{props.children}</div>;
+export const FlexItem = props => <div {...props} className={`flex-item ${props.className}`} style={props.style}>{props.children}</div>;
 
-export const FlexItemExpand = props => <div {...props} flex-role="flex-item-expand" className={`flex-item flex-expand${props.expanded ? '' : ' flex-hidden'}`} style={props.style}>{props.children}</div>;
+export const FlexItemExpand = props => <div {...props} className={`flex-item flex-expand${props.expanded ? '' : ' flex-hidden'}`} style={props.style}>{props.children}</div>;
 
 export const FlexHeader = props => (
-  <div {...props} flex-role="flex-header" className={`flex-header ${props.className}`} style={props.style}>
+  <div {...props} className={`flex-header ${props.className}`} style={props.style}>
     {props.children}
   </div>
 );
 
 export const FlexFooter = props => (
-  <div {...props} flex-role="flex-footer" className={`flex-row ${props.className}`} style={props.style}>
+  <div {...props} className={`flex-row ${props.className}`} style={props.style}>
     {props.children}
   </div>
 );
@@ -42,8 +42,8 @@ export class FlexRow extends Component {
   handleClick(e) {
     if (window.getSelection().toString() === '') {
       const { expanded } = this.state;
-      const flexRole = e.target.getAttribute ? e.target.getAttribute('flex-role') : '';
-      if (flexRole === 'flex-item') { this.setState({ expanded: !expanded }); }
+      const flexRole = e.target.getAttribute ? e.target.getAttribute('flexname') : '';
+      if (flexRole === 'FlexItem') { this.setState({ expanded: !expanded }); }
     }
   }
 
@@ -65,7 +65,7 @@ export class FlexRow extends Component {
             this.props.children.map((component) => {
               if (component.type.defaultProps.flexname === 'FlexItemExpand') {
                 return (
-                  <FlexItemExpand key={Math.random()} expanded={this.state.expanded ? true : undefined}>
+                  <FlexItemExpand key={Math.random()} expanded={this.state.expanded ? 'true' : undefined}>
                     {component.props.children}
                   </FlexItemExpand>
                 );
@@ -97,9 +97,9 @@ FlexItemExpand.propTypes = { ...standardProps, expanded: PropTypes.bool };
 FlexHeader.propTypes = standardProps;
 FlexFooter.propTypes = standardProps;
 
-FlexTable.defaultProps = defaultProps;
-FlexRow.defaultProps = defaultProps;
-FlexItem.defaultProps = defaultProps;
+FlexTable.defaultProps = { ...defaultProps, flexname: 'FlexTable' };
+FlexRow.defaultProps = { ...defaultProps, flexname: 'FlexRow' };
+FlexItem.defaultProps = { ...defaultProps, flexname: 'FlexItem' };
 FlexItemExpand.defaultProps = { ...defaultProps, flexname: 'FlexItemExpand', expanded: false };
-FlexHeader.defaultProps = defaultProps;
-FlexFooter.defaultProps = defaultProps;
+FlexHeader.defaultProps = { ...defaultProps, flexname: 'FlexHeader' };
+FlexFooter.defaultProps = { ...defaultProps, flexname: 'FlexFooter' };
