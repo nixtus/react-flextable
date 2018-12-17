@@ -4,24 +4,54 @@
 
 
 # Features
-
 * **ES6/ESNext** - Write _ES6_ code and _Babel_ will transpile it to ES5 for backwards compatibility
 * **Test** - _Jest_
 * **Lint** - Preconfigured _ESlint_ with _Airbnb_ config
-* **Minify** - Built code will be minified for performance
+* **Minify** - Built code will be not be minified, this allows for easier testability in your application.  Make sure to minify your application for best performance.
 
-# Commands
-- `npm run clean` - Remove `lib/` directory
-- `npm test` - Run tests with linting and coverage results.
-- `npm test:only` - Run tests without linting or coverage.
-- `npm test:watch` - You can even re-run tests on file changes!
-- `npm test:prod` - Run tests with minified code.
-- `npm run lint` - Run ESlint with airbnb-config
-- `npm run build` - Babel will transpile ES6 => ES5 and minify the code.
-- `npm run prepublish` - Hook for npm. Do all the checks before publishing your module.
 
-# Installation
-TBD
+# Components
+- `<FlexTable>` - Outer table container
+- `<FlexHeader>` - Acts like a row but removes row clickable events and adds header styling by default
+- `<FlexFooter>` - Acts like a row but removes row clickable events
+- `<FlexRow>` -  Table Row container
+- `<FlexItemExpand>` - Table item container
+- `<FlexItemExpand>` - Same as 'FlexItem' but is hidden by default until expanded (done so by clicking on any FlexRow item)
+
+
+# Example
+```
+<FlexTable>
+  <FlexHeader>
+    <FlexItem>
+      ID
+    </FlexItem>
+    <FlexItem>
+      Company
+    </FlexItem>
+  </FlexHeader>
+
+  <FlexRow>
+    <FlexItem>
+      fd3gt-1der
+    </FlexItem>
+    <FlexItem>
+      Nixtus
+    </FlexItem>
+    <FlexItemExpand>
+      <!-- THIS WILL BE HIDDEN BY DEFAULT, THEN EXPANDED VISIBLE WHEN FlexRow IS CLICKED -->
+      <h1>Company Details</h1>
+    </FlexItemExpand>
+  </FlexRow>
+
+  <FlexFooter>
+    <FlexItem>
+      $copy; Nixtus
+    </FlexItem>
+  </FlexFooter>
+</FlexTable>
+
+```
 
 
 # License
