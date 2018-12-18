@@ -15,7 +15,7 @@ export const FlexTable = props => (
 
 export const FlexItem = props => <div {...props} className={`flex-item ${props.className}`} style={props.style}>{props.children}</div>;
 
-export const FlexItemExpand = props => <div {...props} className={`flex-item flex-expand${props.expanded ? '' : ' flex-hidden'}`} style={props.style}>{props.children}</div>;
+export const FlexItemExpand = props => <div {...props} className={`flex-item flex-expand${props.itemExpanded ? '' : ' flex-hidden'}`} style={props.style}>{props.children}</div>;
 
 export const FlexHeader = props => (
   <div {...props} className={`flex-header ${props.className}`} style={props.style}>
@@ -49,11 +49,11 @@ export class FlexRow extends Component {
 
   render() {
     const enablePointer = checkForExpandItem(this.props.children);
+    const { expanded } = this.state;
     return (
       <div
         {...this.props}
         role="presentation"
-        flex-role="flex-row"
         className={`flex-row flex-body-row ${enablePointer ? ' cursor-pointer' : ''} ${this.props.className}`}
         style={this.props.style}
         onDoubleClick={e => e.stopPropagation()}
@@ -65,7 +65,7 @@ export class FlexRow extends Component {
             this.props.children.map((component) => {
               if (component.type.defaultProps.flexname === 'FlexItemExpand') {
                 return (
-                  <FlexItemExpand key={Math.random()} expanded={this.state.expanded ? 'true' : undefined}>
+                  <FlexItemExpand key={Math.random()} itemExpanded={expanded}>
                     {component.props.children}
                   </FlexItemExpand>
                 );
