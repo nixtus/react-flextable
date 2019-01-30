@@ -15,7 +15,7 @@
 - `<FlexHeader>` - Acts like a row but removes row clickable events and adds header styling by default
 - `<FlexFooter>` - Acts like a row but removes row clickable events
 - `<FlexRow>` -  Table Row container
-- `<FlexItemExpand>` - Table item container
+- `<FlexItem>` - Table item container
 - `<FlexItemExpand>` - Same as 'FlexItem' but is hidden by default until expanded (done so by clicking on any FlexRow item)
 
 
