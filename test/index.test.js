@@ -123,6 +123,64 @@ describe('FlexFooter Component', () => {
   });
 });
 
+describe('FlexItemExpand Component', () => {
+  let component = null;
+
+  beforeEach(() => {
+  });
+
+  it('should render a base FlexItemExpand not expanded css applied if passed nothing for props and itemexpanded = false', () => {
+    const expectedResult = {
+      type: 'div',
+      props: {
+        className: '',
+        style: {
+          ...styles.flexItem, ...styles.flexExpand, ...styles.flexHidden
+        },
+        flexname: 'FlexItemExpand'
+      },
+      children: null
+    };
+
+    const actualResult = renderer.create(<FlexItemExpand itemexpanded={false} />).toJSON();
+    expect(actualResult).toEqual(expectedResult);
+  });
+
+  it('should render a base FlexItemExpand expanded css applied if passed nothing for props and itemexpanded = true', () => {
+    const expectedResult = {
+      type: 'div',
+      props: {
+        className: '',
+        style: {
+          ...styles.flexItem, ...styles.flexExpand
+        },
+        flexname: 'FlexItemExpand'
+      },
+      children: null
+    };
+
+    const actualResult = renderer.create(<FlexItemExpand itemexpanded={true} />).toJSON();
+    expect(actualResult).toEqual(expectedResult);
+  });
+
+  xit('should render custom props, custom css classes, and styles', () => {
+    const expectedResult = {
+      type: 'div',
+      props: {
+        customProp: 'customProp',
+        style: { ...styles.flexRow, color: 'red' },
+        className: 'text-bold',
+        flexname: 'FlexItemExpand'
+      },
+      children: null
+    };
+
+    const actualResult = renderer.create(<FlexItemExpand customProp="customProp" style={{ color: 'red' }} className='text-bold' />).toJSON();
+
+    expect(actualResult).toEqual(expectedResult);
+  });
+});
+
 describe('FlexRow Component', () => {
   let component = null;
 
@@ -132,23 +190,28 @@ describe('FlexRow Component', () => {
   xit('should render a base FlexRow if passed nothing for props', () => {
     const expectedResult = {
       type: 'div',
-      props: {
-        className: 'flex-body-row  ',
-        style: styles.flexRow,
+      props:
+      {
+        className: 'flex-body-row ',
+        style:
+        {
+          width: '100%',
+          display: 'flex',
+          flexFlow: 'row wrap',
+          borderBottom: '1px solid #d0d0d0',
+          fontSize: '100%',
+          fontWeight: 300
+        },
         flexname: 'FlexRow',
         role: 'presentation',
-        onDoubleClick: () => null,
-        onClick: () => null,
-        onKeyUp: () => null
+        onDoubleClick: Function,
+        onClick: Function,
+        onKeyUp: Function
       },
-      children: [{
-        type: 'div',
-        props: [Object],
-        children: [Array]
-      }]
+      children: [{ type: 'div', props: [Object], children: [Array] }]
     };
 
-    const actualResult = renderer.create(<FlexRow><FlexItem>Test</FlexItem></FlexRow>).toJSON();
+    const actualResult = renderer.create(<FlexRow><FlexItemExpand>Test</FlexItemExpand></FlexRow>).toJSON();
     console.log(actualResult)
     console.log(expectedResult)
     expect(actualResult).toEqual(expectedResult);
