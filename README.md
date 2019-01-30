@@ -1,6 +1,10 @@
 # React Flex Table
 
-[![Build Status](https://travis-ci.org/flexdinesh/npm-module-boilerplate.svg?branch=master)](https://travis-ci.org/flexdinesh/npm-module-boilerplate) [![dependencies Status](https://david-dm.org/flexdinesh/npm-module-boilerplate/status.svg)](https://david-dm.org/flexdinesh/npm-module-boilerplate) [![devDependencies Status](https://david-dm.org/flexdinesh/npm-module-boilerplate/dev-status.svg)](https://david-dm.org/flexdinesh/npm-module-boilerplate?type=dev) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<!-- [![Build Status](https://travis-ci.org/flexdinesh/npm-module-boilerplate.svg?branch=master)](https://travis-ci.org/flexdinesh/npm-module-boilerplate) -->
+[![Build Stats](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://nixtus.com)
+[![dependencies Status](https://david-dm.org/andy9man/react-flextable/status.svg)](https://david-dm.org/andy9man/react-flextable)
+[![devDependencies Status](https://david-dm.org/andy9man/react-flextable/dev-status.svg)](https://david-dm.org/andy9man/react-flextable?type=dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
 # Features
