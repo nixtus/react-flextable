@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import stylePropType from 'react-style-proptype';
+import styles from './styles';
 import './index.scss';
 
-const styles = {
-  flexTable: {
-    display: 'flex', flexFlow: 'column wrap', flex: '1 1 auto', minWidth: 500, tableLayout: 'fixed',
-  },
-  flexItem: {
-    flexGrow: 1, flexBasis: 0, padding: '0.5em 24px', whiteSpace: 'pre-wrap', wordBreak: 'keep-all', minWidth: 0, margin: 'auto',
-  },
-  flexHeader: {
-    width: '100%', display: 'flex', flexFlow: 'row wrap', backgroundColor: 'transparent', borderBottom: '1px solid #d0d0d0', fontSize: '0.8rem', fontWeight: 500,
-  },
-  flexRow: {
-    width: '100%', display: 'flex', flexFlow: 'row wrap', borderBottom: '1px solid #d0d0d0', fontSize: '100%', fontWeight: 300,
-  },
-  flexHidden: {
-    display: 'none', opacity: 0,
-  },
-  cursorPointer: {
-    cursor: 'pointer',
-  },
-};
+// const styles = {
+//   flexTable: {
+//     display: 'flex', flexFlow: 'column wrap', flex: '1 1 auto', minWidth: 500, tableLayout: 'fixed',
+//   },
+//   flexItem: {
+//     flexGrow: 1, flexBasis: 0, padding: '0.5em 24px', whiteSpace: 'pre-wrap', wordBreak: 'keep-all', minWidth: 0, margin: 'auto',
+//   },
+//   flexHeader: {
+//     width: '100%', display: 'flex', flexFlow: 'row wrap', backgroundColor: 'transparent', borderBottom: '1px solid #d0d0d0', fontSize: '0.8rem', fontWeight: 500,
+//   },
+//   flexRow: {
+//     width: '100%', display: 'flex', flexFlow: 'row wrap', borderBottom: '1px solid #d0d0d0', fontSize: '100%', fontWeight: 300,
+//   },
+//   flexHidden: {
+//     display: 'none', opacity: 0,
+//   },
+//   cursorPointer: {
+//     cursor: 'pointer',
+//   },
+// };
 
 const checkForExpandItem = flexItem => (Array.isArray(flexItem)
   ? flexItem.some(component => component.type.defaultProps.flexname === 'FlexItemExpand')
@@ -69,7 +70,7 @@ export const FlexHeader = props => (
 //   </div>
 // );
 export const FlexFooter = props => (
-  <div {...props} className={props.className} style={{ ...styles.flexItem, ...props.style }}>
+  <div {...props} className={props.className} style={{ ...styles.flexRow, ...props.style }}>
     {props.children}
   </div>
 );

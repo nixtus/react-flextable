@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { FlexTable, FlexHeader, FlexFooter, FlexRow, FlexItem, FlexItemExpand } from '../src';
+import styles from '../src/styles';
 
 describe('FlexTable Component', () => {
   let component = null;
@@ -12,8 +13,8 @@ describe('FlexTable Component', () => {
     const expectedResult = {
       type: 'div',
       props: {
-        className: 'flex-table ',
-        style: {},
+        className: '',
+        style: styles.flexTable,
         flexname: 'FlexTable'
       },
       children: null,
@@ -29,8 +30,8 @@ describe('FlexTable Component', () => {
       type: 'div',
       props: {
         customProp: 'customProp',
-        style: { color: 'red' },
-        className: 'flex-table text-bold',
+        style: { ...styles.flexTable, color: 'red' },
+        className: 'text-bold',
         flexname: 'FlexTable'
       },
       children: null
@@ -52,8 +53,8 @@ describe('FlexHeader Component', () => {
     const expectedResult = {
       type: 'div',
       props: {
-        className: 'flex-header ',
-        style: {},
+        className: '',
+        style: styles.flexHeader,
         flexname: 'FlexHeader'
       },
       children: null,
@@ -69,8 +70,8 @@ describe('FlexHeader Component', () => {
       type: 'div',
       props: {
         customProp: 'customProp',
-        style: { color: 'red' },
-        className: 'flex-header text-bold',
+        style: { ...styles.flexHeader, color: 'red' },
+        className: 'text-bold',
         flexname: 'FlexHeader'
       },
       children: null
@@ -92,8 +93,8 @@ describe('FlexFooter Component', () => {
     const expectedResult = {
       type: 'div',
       props: {
-        className: 'flex-row ',
-        style: {},
+        className: '',
+        style: styles.flexRow,
         flexname: 'FlexFooter'
       },
       children: null,
@@ -109,8 +110,8 @@ describe('FlexFooter Component', () => {
       type: 'div',
       props: {
         customProp: 'customProp',
-        style: { color: 'red' },
-        className: 'flex-row text-bold',
+        style: { ...styles.flexRow, color: 'red' },
+        className: 'text-bold',
         flexname: 'FlexFooter'
       },
       children: null
@@ -132,8 +133,8 @@ describe('FlexRow Component', () => {
     const expectedResult = {
       type: 'div',
       props: {
-        className: 'flex-row flex-body-row  ',
-        style: {},
+        className: 'flex-body-row  ',
+        style: styles.flexRow,
         flexname: 'FlexRow',
         role: 'presentation',
         onDoubleClick: () => null,
@@ -158,8 +159,8 @@ describe('FlexRow Component', () => {
       type: 'div',
       props: {
         customProp: 'customProp',
-        style: { color: 'red' },
-        className: 'flex-row text-bold',
+        style: { ...styles.flexRow, color: 'red' },
+        className: 'text-bold',
         flexname: 'FlexRow'
       },
       children: null
