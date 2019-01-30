@@ -28,10 +28,14 @@ export const FlexItem = props => (
 
 // export const FlexItemExpand = props => <div {...props} className={`flex-item flex-expand${props.itemexpanded ? '' : ' flex-hidden'}`} style={props.style}>{props.children}</div>;
 export const FlexItemExpand = (props) => {
-  const styleObject = props.itemexpanded ? { ...styles.flexItem, ...styles.flexExpand, ...props.style } : {
-    ...styles.flexItem, ...styles.flexExpand, ...styles.flexHidden, ...props.style,
-  };
-  return (<div {...props} className={props.className} style={styleObject}>{props.children}</div>);
+  const forwardProps = Object.assign(props);
+  delete forwardProps.itemexpanded;
+  const styleObject = props.itemexpanded
+    ? { ...styles.flexItem, ...styles.flexExpand, ...props.style }
+    : {
+      ...styles.flexItem, ...styles.flexExpand, ...styles.flexHidden, ...props.style,
+    };
+  return (<div {...forwardProps} className={props.className} style={styleObject}>{props.children}</div>);
 };
 
 // export const FlexHeader = props => (
@@ -147,13 +151,13 @@ const defaultProps = {
 FlexTable.propTypes = standardProps;
 FlexRow.propTypes = standardProps;
 FlexItem.propTypes = standardProps;
-FlexItemExpand.propTypes = { ...standardProps, expanded: PropTypes.bool };
+FlexItemExpand.propTypes = { ...standardProps, itemexpanded: PropTypes.bool };
 FlexHeader.propTypes = standardProps;
 FlexFooter.propTypes = standardProps;
 
 FlexTable.defaultProps = { ...defaultProps, flexname: 'FlexTable' };
 FlexRow.defaultProps = { ...defaultProps, flexname: 'FlexRow' };
 FlexItem.defaultProps = { ...defaultProps, flexname: 'FlexItem' };
-FlexItemExpand.defaultProps = { ...defaultProps, flexname: 'FlexItemExpand', expanded: false };
+FlexItemExpand.defaultProps = { ...defaultProps, flexname: 'FlexItemExpand', itemexpanded: false };
 FlexHeader.defaultProps = { ...defaultProps, flexname: 'FlexHeader' };
 FlexFooter.defaultProps = { ...defaultProps, flexname: 'FlexFooter' };
