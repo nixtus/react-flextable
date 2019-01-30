@@ -26,9 +26,9 @@ export const FlexItem = props => (
   </div>
 );
 
-// export const FlexItemExpand = props => <div {...props} className={`flex-item flex-expand${props.itemExpanded ? '' : ' flex-hidden'}`} style={props.style}>{props.children}</div>;
+// export const FlexItemExpand = props => <div {...props} className={`flex-item flex-expand${props.itemexpanded ? '' : ' flex-hidden'}`} style={props.style}>{props.children}</div>;
 export const FlexItemExpand = (props) => {
-  const styleObject = props.itemExpanded ? { ...styles.flexItem, ...styles.flexExpand, ...props.style } : {
+  const styleObject = props.itemexpanded ? { ...styles.flexItem, ...styles.flexExpand, ...props.style } : {
     ...styles.flexItem, ...styles.flexExpand, ...styles.flexHidden, ...props.style,
   };
   return (<div {...props} className={props.className} style={styleObject}>{props.children}</div>);
@@ -92,7 +92,7 @@ export class FlexRow extends Component {
     //         this.props.children.map((component) => {
     //           if (component.type.defaultProps.flexname === 'FlexItemExpand') {
     //             return (
-    //               <FlexItemExpand key={Math.random()} itemExpanded={expanded}>
+    //               <FlexItemExpand key={Math.random()} itemexpanded={expanded}>
     //                 {component.props.children}
     //               </FlexItemExpand>
     //             );
@@ -119,7 +119,7 @@ export class FlexRow extends Component {
             this.props.children.map((component) => {
               if (component.type.defaultProps.flexname === 'FlexItemExpand') {
                 return (
-                  <FlexItemExpand key={Math.random()} itemExpanded={expanded}>
+                  <FlexItemExpand key={Math.random()} itemexpanded={expanded}>
                     {component.props.children}
                   </FlexItemExpand>
                 );

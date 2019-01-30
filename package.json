@@ -1,6 +1,6 @@
 {
   "name": "@nixtus/react-flextable",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "React based 'table' component that uses FlexBox for responsive design.  Also contains a 'Expand' FlexItem allowing users to put components in an expandable area",
   "main": "./lib/index.js",
   "scripts": {
