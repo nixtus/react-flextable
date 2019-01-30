@@ -121,7 +121,7 @@ export class FlexRow extends Component {
     //     }
     //   </div>
     // );
-    const styleObject = enablePointer ? { ...styles.flexRow, ...styles.cursorPointer, ...this.props.style } : { ...styles.flexRow, ...props.style };
+    const styleObject = enablePointer ? { ...styles.flexRow, ...styles.cursorPointer, ...this.props.style } : { ...styles.flexRow, ...this.props.style };
     return (
       <div
         {...this.props}
