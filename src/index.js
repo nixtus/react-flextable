@@ -4,27 +4,6 @@ import stylePropType from 'react-style-proptype';
 import styles from './styles';
 import './index.scss';
 
-// const styles = {
-//   flexTable: {
-//     display: 'flex', flexFlow: 'column wrap', flex: '1 1 auto', minWidth: 500, tableLayout: 'fixed',
-//   },
-//   flexItem: {
-//     flexGrow: 1, flexBasis: 0, padding: '0.5em 24px', whiteSpace: 'pre-wrap', wordBreak: 'keep-all', minWidth: 0, margin: 'auto',
-//   },
-//   flexHeader: {
-//     width: '100%', display: 'flex', flexFlow: 'row wrap', backgroundColor: 'transparent', borderBottom: '1px solid #d0d0d0', fontSize: '0.8rem', fontWeight: 500,
-//   },
-//   flexRow: {
-//     width: '100%', display: 'flex', flexFlow: 'row wrap', borderBottom: '1px solid #d0d0d0', fontSize: '100%', fontWeight: 300,
-//   },
-//   flexHidden: {
-//     display: 'none', opacity: 0,
-//   },
-//   cursorPointer: {
-//     cursor: 'pointer',
-//   },
-// };
-
 const checkForExpandItem = flexItem => (Array.isArray(flexItem)
   ? flexItem.some(component => component.type.defaultProps.flexname === 'FlexItemExpand')
   : flexItem.type.defaultProps.flexname === 'FlexItemExpand');
@@ -49,7 +28,9 @@ export const FlexItem = props => (
 
 // export const FlexItemExpand = props => <div {...props} className={`flex-item flex-expand${props.itemExpanded ? '' : ' flex-hidden'}`} style={props.style}>{props.children}</div>;
 export const FlexItemExpand = (props) => {
-  const styleObject = props.itemExpanded ? { ...styles.flexItem, ...props.style } : { ...styles.flexItem, ...styles.flexHidden, ...props.style };
+  const styleObject = props.itemExpanded ? { ...styles.flexItem, ...styles.flexExpand, ...props.style } : {
+    ...styles.flexItem, ...styles.flexExpand, ...styles.flexHidden, ...props.style,
+  };
   return (<div {...props} className={props.className} style={styleObject}>{props.children}</div>);
 };
 

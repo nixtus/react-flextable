@@ -11,6 +11,9 @@ module.exports = {
   flexRow: {
     width: '100%', display: 'flex', flexFlow: 'row wrap', borderBottom: '1px solid #d0d0d0', fontSize: '100%', fontWeight: 300,
   },
+  flexExpand: {
+    flexBasis: '100%',
+  },
   flexHidden: {
     display: 'none', opacity: 0,
   },
