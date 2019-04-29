@@ -81,7 +81,7 @@ export class FlexRow extends Component {
               if (component.type.defaultProps.flexname === 'FlexItemExpand') {
                 return (
                   <FlexItemExpand key={Math.random()} itemexpanded={expanded}>
-                    {component.props.children}
+                    {expanded && component.props.children}
                   </FlexItemExpand>
                 );
               }
