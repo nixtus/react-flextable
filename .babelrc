@@ -5,7 +5,7 @@
   ],
   "plugins": [
     "add-module-exports",
-    "transform-react-constant-elements",
+    "@babel/plugin-transform-react-constant-elements",
     "transform-react-remove-prop-types"
   ]
 }
