@@ -4,17 +4,17 @@ import stylePropType from 'react-style-proptype';
 import styles from './styles';
 import './index.scss';
 
-const checkForExpandItem = flexItem => (Array.isArray(flexItem)
-  ? flexItem.some(component => component.type.defaultProps.flexname === 'FlexItemExpand')
+const checkForExpandItem = (flexItem) => (Array.isArray(flexItem)
+  ? flexItem.some((component) => component.type.defaultProps.flexname === 'FlexItemExpand')
   : flexItem.type.defaultProps.flexname === 'FlexItemExpand');
 
-export const FlexTable = props => (
+export const FlexTable = (props) => (
   <div {...props} className={props.className} style={{ ...styles.flexTable, ...props.style }}>
     {props.children}
   </div>
 );
 
-export const FlexItem = props => (
+export const FlexItem = (props) => (
   <div {...props} className={props.className} style={{ ...styles.flexItem, ...props.style }}>
     {props.children}
   </div>
@@ -31,13 +31,13 @@ export const FlexItemExpand = (props) => {
   return (<div {...forwardProps} className={props.className} style={styleObject}>{props.children}</div>);
 };
 
-export const FlexHeader = props => (
+export const FlexHeader = (props) => (
   <div {...props} className={props.className} style={{ ...styles.flexHeader, ...props.style }}>
     {props.children}
   </div>
 );
 
-export const FlexFooter = props => (
+export const FlexFooter = (props) => (
   <div {...props} className={props.className} style={{ ...styles.flexRow, ...props.style }}>
     {props.children}
   </div>
@@ -71,9 +71,9 @@ export class FlexRow extends Component {
         role="presentation"
         className={`flex-body-row ${this.props.className}`}
         style={styleObject}
-        onDoubleClick={e => e.stopPropagation()}
+        onDoubleClick={(e) => e.stopPropagation()}
         onClick={this.handleClick}
-        onKeyUp={e => e.keyCode === 13 && this.handleClick(e)}
+        onKeyUp={(e) => e.keyCode === 13 && this.handleClick(e)}
       >
         {
           Array.isArray(this.props.children) ? (
