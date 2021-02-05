@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import 'jest-styled-components';
 import { FlexTable, FlexHeader, FlexFooter, FlexRow, FlexItem, FlexItemExpand } from '../src';
 import styles from '../src/styles';
 
@@ -12,17 +13,24 @@ describe('FlexTable Component', () => {
   it('should render a base FlexTable if passed nothing for props', () => {
     const expectedResult = {
       type: 'div',
-      props: {
-        className: '',
-        style: styles.flexTable,
-        flexname: 'FlexTable'
-      },
       children: null,
+      props: {
+        flexname: 'FlexTable'
+      }
     };
 
     const actualResult = renderer.create(<FlexTable />).toJSON();
 
-    expect(actualResult).toEqual(expectedResult);
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult).toHaveStyleRule(
+      'display', 'flex',
+      'flex-flow', 'column wrap',
+      'flex', '1 1 auto',
+      'min-width', '500px',
+      'table-layout', 'fixed'
+    );
   });
 
   it('should render custom props, custom css classes, and styles', () => {
@@ -30,16 +38,201 @@ describe('FlexTable Component', () => {
       type: 'div',
       props: {
         customProp: 'customProp',
-        style: { ...styles.flexTable, color: 'red' },
+        style: { color: 'red' },
         className: 'text-bold',
         flexname: 'FlexTable'
       },
       children: null
     };
 
-    const actualResult = renderer.create(<FlexTable customProp="customProp" style={{ color: 'red' }} className='text-bold' />).toJSON();
+    const actualResult = renderer.create(
+      <FlexTable
+        customProp="customProp"
+        style={{ color: 'red' }}
+        className='text-bold'
+      />
+    ).toJSON();
 
-    expect(actualResult).toEqual(expectedResult);
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.className.includes(expectedResult.props.className)).toEqual(true);
+    expect(actualResult).toHaveStyleRule(
+      'display', 'flex',
+      'flex-flow', 'column wrap',
+      'flex', '1 1 auto',
+      'min-width', '500px',
+      'table-layout', 'fixed'
+    );
+  });
+});
+
+describe('FlexItem Component', () => {
+  let component = null;
+
+  beforeEach(() => {
+  });
+
+  it('should render a base FlexItem if passed nothing for props', () => {
+    const expectedResult = {
+      type: 'div',
+      children: null,
+      props: {
+        flexname: 'FlexItem'
+      }
+    };
+
+    const actualResult = renderer.create(<FlexItem />).toJSON();
+
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult).toHaveStyleRule(
+      'flex-grow', '1',
+      'flex-basis', '0',
+      'padding', '0.5em 24px',
+      'white-space', 'pre-wrap',
+      'word-break', 'keep-all',
+      'min-width', '0',
+      'margin', 'auto'
+    );
+  });
+
+  it('should render custom props, custom css classes, and styles', () => {
+    const expectedResult = {
+      type: 'div',
+      props: {
+        customProp: 'customProp',
+        style: { color: 'red' },
+        className: 'text-bold',
+        flexname: 'FlexItem'
+      },
+      children: null
+    };
+
+    const actualResult = renderer.create(
+      <FlexItem
+        customProp="customProp"
+        style={{ color: 'red' }}
+        className='text-bold'
+      />
+    ).toJSON();
+
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.className.includes(expectedResult.props.className)).toEqual(true);
+    expect(actualResult).toHaveStyleRule(
+      'flex-grow', '1',
+      'flex-basis', '0',
+      'padding', '0.5em 24px',
+      'white-space', 'pre-wrap',
+      'word-break', 'keep-all',
+      'min-width', '0',
+      'margin', 'auto'
+    );
+  });
+});
+
+describe('FlexItemExpand Component', () => {
+  let component = null;
+
+  beforeEach(() => {
+  });
+
+  it('should render a base FlexItemExpand not expanded css applied if passed nothing for props and itemexpanded = false', () => {
+    const expectedResult = {
+      type: 'div',
+      props: {
+        style: {},
+        flexname: 'FlexItemExpand',
+        itemexpanded: false
+      },
+      children: null
+    };
+
+    const actualResult = renderer.create(<FlexItemExpand itemexpanded={false} />).toJSON();
+
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.itemexpanded).toEqual(expectedResult.props.itemexpanded);
+    expect(actualResult).toHaveStyleRule(
+      'flex-grow', '1',
+      'flex-basis', '0',
+      'padding', '0.5em 24px',
+      'white-space', 'pre-wrap',
+      'word-break', 'keep-all',
+      'min-width', '0',
+      'margin', 'auto',
+      'display', 'none',
+      'opacity', '0',
+    );
+  });
+
+  it('should render a base FlexItemExpand expanded css applied if passed nothing for props and itemexpanded = true', () => {
+    const expectedResult = {
+      type: 'div',
+      props: {
+        className: '',
+        style: {},
+        flexname: 'FlexItemExpand',
+        itemexpanded: true
+      },
+      children: null
+    };
+
+    const actualResult = renderer.create(<FlexItemExpand itemexpanded={true} />).toJSON();
+
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.className.includes(expectedResult.props.className)).toEqual(true);
+    expect(actualResult.props.itemexpanded).toEqual(expectedResult.props.itemexpanded);
+    expect(actualResult).toHaveStyleRule(
+      'flex-grow', '1',
+      'flex-basis', '0',
+      'padding', '0.5em 24px',
+      'white-space', 'pre-wrap',
+      'word-break', 'keep-all',
+      'min-width', '0',
+      'margin', 'auto',
+      'display', 'default',
+      'opacity', 'default',
+    );
+  });
+
+  it('should render custom props, custom css classes, and styles', () => {
+    const expectedResult = {
+      type: 'div',
+      props: {
+        customProp: 'customProp',
+        style: { ...styles.flexRow, color: 'red' },
+        className: 'text-bold',
+        itemexpanded: false,
+        flexname: 'FlexItemExpand'
+      },
+      children: null
+    };
+
+    const actualResult = renderer.create(<FlexItemExpand customProp="customProp" style={{ color: 'red' }} className='text-bold' />).toJSON();
+
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.itemexpanded).toEqual(expectedResult.props.itemexpanded);
+    expect(actualResult.props.customProp).toEqual(expectedResult.props.customProp);
+    expect(actualResult).toHaveStyleRule(
+      'flex-grow', '1',
+      'flex-basis', '0',
+      'padding', '0.5em 24px',
+      'white-space', 'pre-wrap',
+      'word-break', 'keep-all',
+      'min-width', '0',
+      'margin', 'auto',
+      'display', 'none',
+      'opacity', '0',
+    );
   });
 });
 
@@ -62,7 +255,19 @@ describe('FlexHeader Component', () => {
 
     const actualResult = renderer.create(<FlexHeader />).toJSON();
 
-    expect(actualResult).toEqual(expectedResult);
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.className.includes(expectedResult.props.className)).toEqual(true);
+    expect(actualResult).toHaveStyleRule(
+      'width', '100%',
+      'display', 'flex',
+      'flex-flow', 'row wrap',
+      'background-color', 'transparent',
+      'border-bottom', '1px solid #d0d0d0',
+      'font-size', '0.8rem',
+      'font-weight', '500'
+    );
   });
 
   it('should render custom props, custom css classes, and styles', () => {
@@ -79,8 +284,22 @@ describe('FlexHeader Component', () => {
 
     const actualResult = renderer.create(<FlexHeader customProp="customProp" style={{ color: 'red' }} className='text-bold' />).toJSON();
 
-    expect(actualResult).toEqual(expectedResult);
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.customProp).toEqual(expectedResult.props.customProp);
+    expect(actualResult.props.className.includes(expectedResult.props.className)).toEqual(true);
+    expect(actualResult).toHaveStyleRule(
+      'width', '100%',
+      'display', 'flex',
+      'flex-flow', 'row wrap',
+      'background-color', 'transparent',
+      'border-bottom', '1px solid #d0d0d0',
+      'font-size', '0.8rem',
+      'font-weight', '500'
+    );
   });
+
 });
 
 describe('FlexFooter Component', () => {
@@ -102,7 +321,19 @@ describe('FlexFooter Component', () => {
 
     const actualResult = renderer.create(<FlexFooter />).toJSON();
 
-    expect(actualResult).toEqual(expectedResult);
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.customProp).toEqual(expectedResult.props.customProp);
+    expect(actualResult.props.className.includes(expectedResult.props.className)).toEqual(true);
+    expect(actualResult).toHaveStyleRule(
+      'width', '100%',
+      'display', 'flex',
+      'flex-flow', 'row wrap',
+      'border-bottom', '1px solid #d0d0d0',
+      'font-size', '100%',
+      'font-weight', '300'
+    );
   });
 
   it('should render custom props, custom css classes, and styles', () => {
@@ -119,65 +350,20 @@ describe('FlexFooter Component', () => {
 
     const actualResult = renderer.create(<FlexFooter customProp="customProp" style={{ color: 'red' }} className='text-bold' />).toJSON();
 
-    expect(actualResult).toEqual(expectedResult);
-  });
-});
-
-describe('FlexItemExpand Component', () => {
-  let component = null;
-
-  beforeEach(() => {
-  });
-
-  it('should render a base FlexItemExpand not expanded css applied if passed nothing for props and itemexpanded = false', () => {
-    const expectedResult = {
-      type: 'div',
-      props: {
-        className: '',
-        style: {
-          ...styles.flexItem, ...styles.flexExpand, ...styles.flexHidden
-        },
-        flexname: 'FlexItemExpand'
-      },
-      children: null
-    };
-
-    const actualResult = renderer.create(<FlexItemExpand itemexpanded={false} />).toJSON();
-    expect(actualResult).toEqual(expectedResult);
-  });
-
-  it('should render a base FlexItemExpand expanded css applied if passed nothing for props and itemexpanded = true', () => {
-    const expectedResult = {
-      type: 'div',
-      props: {
-        className: '',
-        style: {
-          ...styles.flexItem, ...styles.flexExpand
-        },
-        flexname: 'FlexItemExpand'
-      },
-      children: null
-    };
-
-    const actualResult = renderer.create(<FlexItemExpand itemexpanded={true} />).toJSON();
-    expect(actualResult).toEqual(expectedResult);
-  });
-
-  xit('should render custom props, custom css classes, and styles', () => {
-    const expectedResult = {
-      type: 'div',
-      props: {
-        customProp: 'customProp',
-        style: { ...styles.flexRow, color: 'red' },
-        className: 'text-bold',
-        flexname: 'FlexItemExpand'
-      },
-      children: null
-    };
-
-    const actualResult = renderer.create(<FlexItemExpand customProp="customProp" style={{ color: 'red' }} className='text-bold' />).toJSON();
-
-    expect(actualResult).toEqual(expectedResult);
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toEqual(expectedResult.children);
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.customProp).toEqual(expectedResult.props.customProp);
+    expect(actualResult.props.className.includes(expectedResult.props.className)).toEqual(true);
+    expect(actualResult).toHaveStyleRule(
+      'width', '100%',
+      'display', 'flex',
+      'flex-flow', 'row wrap',
+      'background-color', 'transparent',
+      'border-bottom', '1px solid #d0d0d0',
+      'font-size', '0.8rem',
+      'font-weight', '500'
+    );
   });
 });
 

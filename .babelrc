@@ -4,8 +4,15 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    "add-module-exports",
     "@babel/plugin-transform-react-constant-elements",
+    "add-module-exports",
+    "babel-plugin-macros",
+    [
+      "babel-plugin-styled-components",
+      {
+        "fileName": false
+      }
+    ],
     "transform-react-remove-prop-types"
   ]
 }

@@ -2,46 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import stylePropType from 'react-style-proptype';
 import styles from './styles';
+import * as ReactFlexTable from './styles/FlexStyle';
 import './index.scss';
 
 const checkForExpandItem = (flexItem) => (Array.isArray(flexItem)
   ? flexItem.some((component) => component.type.defaultProps.flexname === 'FlexItemExpand')
   : flexItem.type.defaultProps.flexname === 'FlexItemExpand');
 
-export const FlexTable = (props) => (
-  <div {...props} className={props.className} style={{ ...styles.flexTable, ...props.style }}>
-    {props.children}
-  </div>
-);
+export const FlexTable = ({ children, ...restProps }) => <ReactFlexTable.Table {...restProps}>{children}</ReactFlexTable.Table>;
 
-export const FlexItem = (props) => (
-  <div {...props} className={props.className} style={{ ...styles.flexItem, ...props.style }}>
-    {props.children}
-  </div>
-);
+export const FlexItem = ({ children, ...restProps }) => <ReactFlexTable.Item {...restProps}>{children}</ReactFlexTable.Item>;
 
-export const FlexItemExpand = (props) => {
-  const styleObject = props.itemexpanded
-    ? { ...styles.flexItem, ...styles.flexExpand, ...props.style }
-    : {
-      ...styles.flexItem, ...styles.flexExpand, ...styles.flexHidden, ...props.style,
-    };
-  const forwardProps = { ...props };
-  delete forwardProps.itemexpanded;
-  return (<div {...forwardProps} className={props.className} style={styleObject}>{props.children}</div>);
-};
+export const FlexItemExpand = ({ children, ...restProps }) => <ReactFlexTable.ItemExpand {...restProps}>{children}</ReactFlexTable.ItemExpand>;
 
-export const FlexHeader = (props) => (
-  <div {...props} className={props.className} style={{ ...styles.flexHeader, ...props.style }}>
-    {props.children}
-  </div>
-);
+export const FlexHeader = ({ children, ...restProps }) => <ReactFlexTable.Header {...restProps}>{children}</ReactFlexTable.Header>;
 
-export const FlexFooter = (props) => (
-  <div {...props} className={props.className} style={{ ...styles.flexRow, ...props.style }}>
-    {props.children}
-  </div>
-);
+export const FlexFooter = ({ children, ...restProps }) => <ReactFlexTable.Footer {...restProps}>{children}</ReactFlexTable.Footer>;
 
 export class FlexRow extends Component {
   constructor(props) {
