@@ -53,6 +53,21 @@ export const Footer = styled(DefaultDiv)`
   font-weight: 300;
 `;
 
+export const Row = styled(DefaultDiv)`
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  border-bottom: 1px solid #d0d0d0;
+  font-size: 100%;
+  font-weight: 300;
+  cursor: ${({ enablepointer }) => (enablepointer ? 'pointer' : 'default')};
+
+
+  &:hover: {
+    background-color: lightyellow;
+  }
+`;
+
 DefaultDiv.propTypes = {
   children: PropTypes.node,
 };

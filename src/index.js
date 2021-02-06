@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import stylePropType from 'react-style-proptype';
-import styles from './styles';
+// import styles from './styles';
 import * as ReactFlexTable from './styles/FlexStyle';
-import './index.scss';
 
-const checkForExpandItem = (flexItem) => (Array.isArray(flexItem)
-  ? flexItem.some((component) => component.type.defaultProps.flexname === 'FlexItemExpand')
-  : flexItem.type.defaultProps.flexname === 'FlexItemExpand');
+const checkForExpandItem = (flexItem) => {
+  if (flexItem) {
+    return (Array.isArray(flexItem)
+      ? flexItem.some((component) => component.type.defaultProps.flexname === 'FlexItemExpand')
+      : flexItem.type.defaultProps.flexname === 'FlexItemExpand');
+  }
+  return false;
+};
 
 export const FlexTable = ({ children, ...restProps }) => <ReactFlexTable.Table {...restProps}>{children}</ReactFlexTable.Table>;
 
@@ -19,56 +23,98 @@ export const FlexHeader = ({ children, ...restProps }) => <ReactFlexTable.Header
 
 export const FlexFooter = ({ children, ...restProps }) => <ReactFlexTable.Footer {...restProps}>{children}</ReactFlexTable.Footer>;
 
-export class FlexRow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      expanded: false,
-    };
+export function FlexRow({ children, ...restProps }) {
+  const [expanded, setExpanded] = useState(false);
 
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
+  const handleClick = (e) => {
     if (window.getSelection().toString() === '') {
-      const { expanded } = this.state;
       const flexRole = e.target.getAttribute ? e.target.getAttribute('flexname') : '';
-      if (flexRole === 'FlexItem') { this.setState({ expanded: !expanded }); }
+      if (flexRole === 'FlexItem') {
+        setExpanded(!expanded);
+      }
     }
-  }
+  };
 
-  render() {
-    const enablePointer = checkForExpandItem(this.props.children);
-    const { expanded } = this.state;
-    const styleObject = enablePointer ? { ...styles.flexRow, ...styles.cursorPointer, ...this.props.style } : { ...styles.flexRow, ...this.props.style };
-    return (
-      <div
-        {...this.props}
-        role="presentation"
-        className={`flex-body-row ${this.props.className}`}
-        style={styleObject}
-        onDoubleClick={(e) => e.stopPropagation()}
-        onClick={this.handleClick}
-        onKeyUp={(e) => e.keyCode === 13 && this.handleClick(e)}
-      >
-        {
-          Array.isArray(this.props.children) ? (
-            this.props.children.map((component) => {
-              if (component.type.defaultProps.flexname === 'FlexItemExpand') {
-                return (
-                  <FlexItemExpand key={Math.random()} itemexpanded={expanded}>
-                    {expanded && component.props.children}
-                  </FlexItemExpand>
-                );
-              }
-              return component;
-            })
-          ) : this.props.children
-        }
-      </div>
-    );
-  }
+  // const enablePointer = checkForExpandItem(children);
+  // const styleObject = enablePointer ? { ...styles.flexRow, ...styles.cursorPointer, ...this.props.style } : { ...styles.flexRow, ...this.props.style };
+  return (
+    <ReactFlexTable.Row
+      {...restProps}
+      role="presentation"
+      onDoubleClick={(e) => e.stopPropagation()}
+      onClick={handleClick}
+      onKeyUp={(e) => e.key === 'Enter' && handleClick(e)}
+      enablepointer={checkForExpandItem(children)}
+    >
+      {
+        Array.isArray(children) ? (
+          children.map((component) => {
+            if (component.type.defaultProps.flexname === 'FlexItemExpand') {
+              return (
+                <FlexItemExpand key={Math.random()} itemexpanded={expanded}>
+                  {expanded && component.props.children}
+                </FlexItemExpand>
+              );
+            }
+            return component;
+          })
+        ) : children
+      }
+    </ReactFlexTable.Row>
+  );
 }
+
+// export class FlexRow extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       expanded: false,
+//     };
+
+//     this.handleClick = this.handleClick.bind(this);
+//   }
+
+//   handleClick(e) {
+//     if (window.getSelection().toString() === '') {
+//       const { expanded } = this.state;
+//       const flexRole = e.target.getAttribute ? e.target.getAttribute('flexname') : '';
+//       if (flexRole === 'FlexItem') { this.setState({ expanded: !expanded }); }
+//     }
+//   }
+
+//   render() {
+//     const enablePointer = checkForExpandItem(this.props.children);
+//     const { expanded } = this.state;
+
+//     const { children, ...restProps } = this.props;
+//     // const styleObject = enablePointer ? { ...styles.flexRow, ...styles.cursorPointer, ...this.props.style } : { ...styles.flexRow, ...this.props.style };
+//     return (
+//       <ReactFlexTable.Row
+//         {...restProps}
+//         role="presentation"
+//         onDoubleClick={(e) => e.stopPropagation()}
+//         onClick={this.handleClick}
+//         onKeyUp={(e) => e.key === 'Enter' && this.handleClick(e)}
+//         enablepointer={enablePointer}
+//       >
+//         {
+//           Array.isArray(children) ? (
+//             children.map((component) => {
+//               if (component.type.defaultProps.flexname === 'FlexItemExpand') {
+//                 return (
+//                   <FlexItemExpand key={Math.random()} itemexpanded={expanded}>
+//                     {expanded && component.props.children}
+//                   </FlexItemExpand>
+//                 );
+//               }
+//               return component;
+//             })
+//           ) : children
+//         }
+//       </ReactFlexTable.Row>
+//     );
+//   }
+// }
 
 const standardProps = {
   children: PropTypes.node.isRequired,

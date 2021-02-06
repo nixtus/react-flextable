@@ -373,12 +373,12 @@ describe('FlexRow Component', () => {
   beforeEach(() => {
   });
 
-  xit('should render a base FlexRow if passed nothing for props', () => {
+  it('should render a base FlexRow if passed nothing for props', () => {
     const expectedResult = {
       type: 'div',
       props:
       {
-        className: 'flex-body-row ',
+        className: '',
         style:
         {
           width: '100%',
@@ -394,16 +394,27 @@ describe('FlexRow Component', () => {
         onClick: Function,
         onKeyUp: Function
       },
-      children: [{ type: 'div', props: [Object], children: [Array] }]
+      children: [{ type: 'div', props: [Object], children: [] }]
     };
 
     const actualResult = renderer.create(<FlexRow><FlexItemExpand>Test</FlexItemExpand></FlexRow>).toJSON();
-    console.log(actualResult)
-    console.log(expectedResult)
-    expect(actualResult).toEqual(expectedResult);
+
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toBeDefined();
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.customProp).toEqual(expectedResult.props.customProp);
+    expect(actualResult.props.className.includes(expectedResult.props.className)).toEqual(true);
+    expect(actualResult).toHaveStyleRule(
+      'width', '100%',
+      'display', 'flex',
+      'flex-flow', 'row wrap',
+      'border-bottom', '1px solid #d0d0d0',
+      'font-size', '100%',
+      'font-weight', '300'
+    );
   });
 
-  xit('should render custom props, custom css classes, and styles', () => {
+  it('should render custom props, custom css classes, and styles', () => {
     const expectedResult = {
       type: 'div',
       props: {
@@ -415,8 +426,26 @@ describe('FlexRow Component', () => {
       children: null
     };
 
-    const actualResult = renderer.create(<FlexRow customProp="customProp" style={{ color: 'red' }} className='text-bold' />).toJSON();
+    const actualResult = renderer.create(
+      <FlexRow
+        customProp="customProp"
+        style={{ color: 'red' }}
+        className='text-bold'
+      />
+    ).toJSON();
 
-    expect(actualResult).toEqual(expectedResult);
+    expect(actualResult.type).toEqual(expectedResult.type);
+    expect(actualResult.children).toBeNull();
+    expect(actualResult.props.flexname).toEqual(expectedResult.props.flexname);
+    expect(actualResult.props.customProp).toEqual(expectedResult.props.customProp);
+    expect(actualResult.props.className.includes(expectedResult.props.className)).toEqual(true);
+    expect(actualResult).toHaveStyleRule(
+      'width', '100%',
+      'display', 'flex',
+      'flex-flow', 'row wrap',
+      'border-bottom', '1px solid #d0d0d0',
+      'font-size', '100%',
+      'font-weight', '300'
+    );
   });
 });

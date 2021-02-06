@@ -1,10 +1,11 @@
 {
   "name": "@nixtus/react-flextable",
-  "version": "0.1.11",
+  "version": "1.0.1",
   "description": "React based 'table' component that uses FlexBox for responsive design.  Also contains a 'Expand' FlexItem allowing users to put components in an expandable area",
   "main": "./lib/index.js",
   "scripts": {
-    "clean": "rimraf lib",
+    "bump": "bump package.json package-lock.json",
+    "clean": "rimraf lib *.tgz",
     "lint": "npm run lint:fix",
     "lint:fix": "eslint ./src --fix",
     "lint:run": "eslint ./src",
@@ -15,7 +16,7 @@
     "test:ci": "npm run lint:run && jest --coverage --silent --colors",
     "test:watch": "npm run test -- --watch --verbose false",
     "build": "webpack --mode production --config webpack/webpack.config.js",
-    "preinstall": "npx npm-force-resolutions",
+    "install:fix": "npx npm-force-resolutions",
     "prepublish": "npm run clean && npm run lint && npm run test && npm run build"
   },
   "files": [
@@ -46,6 +47,7 @@
     "@babel/plugin-transform-react-constant-elements": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
+    "@jsdevtools/version-bump-prompt": "^6.1.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "autoprefixer": "^10.2.4",
     "babel-eslint": "^10.1.0",
@@ -70,18 +72,21 @@
     "node-sass": "^5.0.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^5.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-test-renderer": "^17.0.1",
     "rimraf": "^3.0.2",
-    "sass-loader": "^10.1.1",
+    "sass-loader": "^11.0.0",
     "style-loader": "^2.0.0",
+    "webpack": "^5.21.0",
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
     "react-style-proptype": "^3.2.2",
-    "styled-components": "^5.2.1",
-    "webpack": "^5.20.2"
+    "styled-components": "^5.2.1"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8.x"
   }
 }
