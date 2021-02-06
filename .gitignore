@@ -38,4 +38,4 @@ lib
 
 # others
 .DS_Store
-*tgz
+*.tgz
