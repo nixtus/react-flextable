@@ -1,6 +1,5 @@
 # React Flex Table
 
-<!-- [![Build Status](https://travis-ci.org/flexdinesh/npm-module-boilerplate.svg?branch=master)](https://travis-ci.org/flexdinesh/npm-module-boilerplate) -->
 [![Build Stats](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://nixtus.com)
 [![dependencies Status](https://david-dm.org/andy9man/react-flextable/status.svg)](https://david-dm.org/andy9man/react-flextable)
 [![devDependencies Status](https://david-dm.org/andy9man/react-flextable/dev-status.svg)](https://david-dm.org/andy9man/react-flextable?type=dev)
@@ -12,6 +11,8 @@
 * **Test** - _Jest_
 * **Lint** - Preconfigured _ESlint_ with _Airbnb_ config
 * **Minify** - Built code will be not be minified, this allows for easier testability in your application.  Make sure to minify your application for best performance.
+* **Styled Components** - Built using styled components with flexibility to allow you to customize them to meet your needs.  Just pass styles and classes as normal props.
+* **React Hooks** - Built using react hooks.
 
 
 # Components

@@ -2,10 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 import { FlexTable, FlexHeader, FlexFooter, FlexRow, FlexItem, FlexItemExpand } from '../src';
-import styles from '../src/styles';
 
 describe('FlexTable Component', () => {
-  let component = null;
 
   beforeEach(() => {
   });
@@ -68,7 +66,6 @@ describe('FlexTable Component', () => {
 });
 
 describe('FlexItem Component', () => {
-  let component = null;
 
   beforeEach(() => {
   });
@@ -135,7 +132,6 @@ describe('FlexItem Component', () => {
 });
 
 describe('FlexItemExpand Component', () => {
-  let component = null;
 
   beforeEach(() => {
   });
@@ -207,9 +203,9 @@ describe('FlexItemExpand Component', () => {
       type: 'div',
       props: {
         customProp: 'customProp',
-        style: { ...styles.flexRow, color: 'red' },
+        style: { color: 'red' },
         className: 'text-bold',
-        itemexpanded: false,
+        itemexpanded: undefined,
         flexname: 'FlexItemExpand'
       },
       children: null
@@ -237,7 +233,6 @@ describe('FlexItemExpand Component', () => {
 });
 
 describe('FlexHeader Component', () => {
-  let component = null;
 
   beforeEach(() => {
   });
@@ -247,7 +242,7 @@ describe('FlexHeader Component', () => {
       type: 'div',
       props: {
         className: '',
-        style: styles.flexHeader,
+        style: {},
         flexname: 'FlexHeader'
       },
       children: null,
@@ -275,7 +270,7 @@ describe('FlexHeader Component', () => {
       type: 'div',
       props: {
         customProp: 'customProp',
-        style: { ...styles.flexHeader, color: 'red' },
+        style: { color: 'red' },
         className: 'text-bold',
         flexname: 'FlexHeader'
       },
@@ -303,7 +298,6 @@ describe('FlexHeader Component', () => {
 });
 
 describe('FlexFooter Component', () => {
-  let component = null;
 
   beforeEach(() => {
   });
@@ -313,7 +307,7 @@ describe('FlexFooter Component', () => {
       type: 'div',
       props: {
         className: '',
-        style: styles.flexRow,
+        style: {},
         flexname: 'FlexFooter'
       },
       children: null,
@@ -341,7 +335,7 @@ describe('FlexFooter Component', () => {
       type: 'div',
       props: {
         customProp: 'customProp',
-        style: { ...styles.flexRow, color: 'red' },
+        style: { color: 'red' },
         className: 'text-bold',
         flexname: 'FlexFooter'
       },
@@ -368,7 +362,6 @@ describe('FlexFooter Component', () => {
 });
 
 describe('FlexRow Component', () => {
-  let component = null;
 
   beforeEach(() => {
   });
@@ -419,7 +412,7 @@ describe('FlexRow Component', () => {
       type: 'div',
       props: {
         customProp: 'customProp',
-        style: { ...styles.flexRow, color: 'red' },
+        style: { color: 'red' },
         className: 'text-bold',
         flexname: 'FlexRow'
       },

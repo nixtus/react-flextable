@@ -61,9 +61,7 @@ export const Row = styled(DefaultDiv)`
   font-size: 100%;
   font-weight: 300;
   cursor: ${({ enablepointer }) => (enablepointer ? 'pointer' : 'default')};
-
-
-  &:hover: {
+  &:hover {
     background-color: lightyellow;
   }
 `;

@@ -1,9 +1,8 @@
 const path = require('path');
-// const package = require('../package.json');
 
 module.exports = {
   mode: 'production',
-  entry: './src/index',
+  entry: './src/index.js',
   output: {
     path: path.resolve('lib'),
     filename: 'index.js',
@@ -12,9 +11,22 @@ module.exports = {
   optimization: {
     minimize: false,
   },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+  },
   externals: {
-    react: 'commonjs react',
-    'react-dom': 'commonjs react-dom',
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react',
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom',
+    },
   },
   module: {
     rules: [
@@ -25,29 +37,6 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
-      // {
-      //   test: /\.scss$/,
-      //   use: [
-      //     require.resolve('style-loader'),
-      //     {
-      //       loader: require.resolve('css-loader'),
-      //       options: {
-      //         importLoaders: 1,
-      //       },
-      //     },
-      //     {
-      //       loader: require.resolve('sass-loader'),
-      //     },
-      //   ],
-      // },
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      //     {
-      //       loader: 'html-loader',
-      //     },
-      //   ],
-      // },
     ],
   },
 };
