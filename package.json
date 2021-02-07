@@ -26,7 +26,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andy9man/react-flextable.git"
+    "url": "git+https://github.com/nixtus/react-flextable.git"
   },
   "keywords": [
     "react",
@@ -39,7 +39,7 @@
   "author": "Andrew Ninneman <andy@nixtus.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andy9man/react-flextable/issues"
+    "url": "https://github.com/nixtus/react-flextable/issues"
   },
   "homepage": "http://nixtus.com",
   "devDependencies": {
