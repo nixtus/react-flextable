@@ -3,6 +3,7 @@
 [![Build Stats](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://nixtus.com)
 [![dependencies Status](https://david-dm.org/nixtus/react-flextable/status.svg)](https://david-dm.org/nixtus/react-flextable)
 [![devDependencies Status](https://david-dm.org/nixtus/react-flextable/dev-status.svg)](https://david-dm.org/nixtus/react-flextable?type=dev)
+[![peerDependencies Status](https://david-dm.org/nixtus/react-flextable/peer-status.svg)](https://david-dm.org/nixtus/react-flextable?type=peer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
