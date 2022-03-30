@@ -12,15 +12,25 @@ const checkForExpandItem = (flexItem) => {
   return false;
 };
 
-export const FlexTable = ({ children, ...restProps }) => <ReactFlexTable.Table {...restProps}>{children}</ReactFlexTable.Table>;
+export function FlexTable({ children, ...restProps }) {
+  return <ReactFlexTable.Table {...restProps}>{children}</ReactFlexTable.Table>;
+}
 
-export const FlexItem = ({ children, ...restProps }) => <ReactFlexTable.Item {...restProps}>{children}</ReactFlexTable.Item>;
+export function FlexItem({ children, ...restProps }) {
+  return <ReactFlexTable.Item {...restProps}>{children}</ReactFlexTable.Item>;
+}
 
-export const FlexItemExpand = ({ children, ...restProps }) => <ReactFlexTable.ItemExpand {...restProps}>{children}</ReactFlexTable.ItemExpand>;
+export function FlexItemExpand({ children, ...restProps }) {
+  return <ReactFlexTable.ItemExpand {...restProps}>{children}</ReactFlexTable.ItemExpand>;
+}
 
-export const FlexHeader = ({ children, ...restProps }) => <ReactFlexTable.Header {...restProps}>{children}</ReactFlexTable.Header>;
+export function FlexHeader({ children, ...restProps }) {
+  return <ReactFlexTable.Header {...restProps}>{children}</ReactFlexTable.Header>;
+}
 
-export const FlexFooter = ({ children, ...restProps }) => <ReactFlexTable.Footer {...restProps}>{children}</ReactFlexTable.Footer>;
+export function FlexFooter({ children, ...restProps }) {
+  return <ReactFlexTable.Footer {...restProps}>{children}</ReactFlexTable.Footer>;
+}
 
 export function FlexRow({ children, ...restProps }) {
   const [expanded, setExpanded] = React.useState(false);

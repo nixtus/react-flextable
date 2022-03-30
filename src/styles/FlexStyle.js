@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-const DefaultDiv = ({ children, ...restProps }) => <div {...restProps}>{children}</div>;
+function DefaultDiv({ children, ...restProps }) {
+  return <div {...restProps}>{children}</div>;
+}
 
 export const Table = styled(DefaultDiv)`
   display: flex;
