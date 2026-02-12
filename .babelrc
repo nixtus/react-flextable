@@ -6,7 +6,6 @@
   "plugins": [
     "@babel/plugin-transform-react-constant-elements",
     "add-module-exports",
-    "babel-plugin-macros",
     [
       "babel-plugin-styled-components",
       {

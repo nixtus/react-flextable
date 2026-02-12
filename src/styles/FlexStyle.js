@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 function DefaultDiv({ children, ...restProps }) {
   return <div {...restProps}>{children}</div>;
@@ -26,14 +26,14 @@ export const Item = styled(DefaultDiv)`
 
 export const ItemExpand = styled(DefaultDiv)`
   flex-grow: 1;
-  flex-basis: ${({ itemexpanded }) => (itemexpanded ? '100%' : 0)};
+  flex-basis: ${({ $itemExpanded }) => ($itemExpanded ? '100%' : 0)};
   padding: 0.5em 24px;
   white-space: pre-wrap;
   word-break: keep-all;
   min-width: 0;
   margin: auto;
-  display: ${({ itemexpanded }) => (itemexpanded ? 'default' : 'none')};
-  opacity: ${({ itemexpanded }) => (itemexpanded ? 'default' : 0)};
+  display: ${({ $itemExpanded }) => ($itemExpanded ? 'default' : 'none')};
+  opacity: ${({ $itemExpanded }) => ($itemExpanded ? 'default' : 0)};
 `;
 
 export const Header = styled(DefaultDiv)`
@@ -62,7 +62,7 @@ export const Row = styled(DefaultDiv)`
   border-bottom: 1px solid #d0d0d0;
   font-size: 100%;
   font-weight: 300;
-  cursor: ${({ enablepointer }) => (enablepointer ? 'pointer' : 'default')};
+  cursor: ${({ $enablePointer }) => ($enablePointer ? 'pointer' : 'default')};
   &:hover {
     background-color: lightyellow;
   }

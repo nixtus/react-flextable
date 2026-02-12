@@ -6,8 +6,8 @@ import * as ReactFlexTable from './styles/FlexStyle';
 const checkForExpandItem = (flexItem) => {
   if (flexItem) {
     return (Array.isArray(flexItem)
-      ? flexItem.some((component) => component.type.defaultProps.flexname === 'FlexItemExpand')
-      : flexItem.type.defaultProps.flexname === 'FlexItemExpand');
+      ? flexItem.some((component) => component?.type?.defaultProps?.flexname === 'FlexItemExpand')
+      : flexItem?.type?.defaultProps?.flexname === 'FlexItemExpand');
   }
   return false;
 };
@@ -20,8 +20,12 @@ export function FlexItem({ children, ...restProps }) {
   return <ReactFlexTable.Item {...restProps}>{children}</ReactFlexTable.Item>;
 }
 
-export function FlexItemExpand({ children, ...restProps }) {
-  return <ReactFlexTable.ItemExpand {...restProps}>{children}</ReactFlexTable.ItemExpand>;
+export function FlexItemExpand({ children, itemexpanded, ...restProps }) {
+  return (
+    <ReactFlexTable.ItemExpand {...restProps} $itemExpanded={itemexpanded}>
+      {children}
+    </ReactFlexTable.ItemExpand>
+  );
 }
 
 export function FlexHeader({ children, ...restProps }) {
@@ -53,14 +57,14 @@ export function FlexRow({ children, ...restProps }) {
       onDoubleClick={(e) => e.stopPropagation()}
       onClick={handleClick}
       onKeyUp={(e) => e.key === 'Enter' && handleClick(e)}
-      enablepointer={enablePointer ? 1 : undefined}
+      $enablePointer={enablePointer ? 1 : undefined}
     >
       {
         Array.isArray(children) ? (
-          children.map((component) => {
-            if (component.type.defaultProps.flexname === 'FlexItemExpand') {
+          children.map((component, index) => {
+            if (component?.type?.defaultProps?.flexname === 'FlexItemExpand') {
               return (
-                <FlexItemExpand key={Math.random()} itemexpanded={expanded ? 1 : undefined}>
+                <FlexItemExpand key={index} itemexpanded={expanded ? 1 : undefined}>
                   {expanded && component.props.children}
                 </FlexItemExpand>
               );
@@ -74,7 +78,7 @@ export function FlexRow({ children, ...restProps }) {
 }
 
 const standardProps = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
   style: stylePropType,
 };
